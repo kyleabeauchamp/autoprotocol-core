@@ -1,4 +1,4 @@
-#Autoprotocol-Core
+# Autoprotocol-Core
 
 This repository contains a collection of scripts that use the [autoprotocol-python](http://github.com/autoprotocol/autoprotocol-python) library to generate protocols in [Autoprotocol](https://www.autoprotocol.org), a standard way to express experiments in life science.
 
@@ -8,9 +8,9 @@ This repository contains a collection of scripts that use the [autoprotocol-pyth
     $ cd autoprotocol-core
     $ python setup.py install
 
-##Running Protocols
+## Running Protocols
 
-All protocols in this repository require a separate config file to be passed on the command line in order to run.
+All protocols in this repository require a separate configuration file to be passed on the command line in order to run.  Templates for the required config file for each protocol are located in the docstring for that protocol.
 
 For example, to run the Gibson assembly protocol:
 
