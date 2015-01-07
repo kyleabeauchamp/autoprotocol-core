@@ -8,13 +8,15 @@ This repository contains a collection of scripts that use the [autoprotocol-pyth
     $ cd autoprotocol-core
     $ python setup.py install
 
+Installation will also install the [autoprotocol-python](http://github.com/autoprotocol/autoprotocol-python) package if you don't already have it.
+
 ## Running Protocols
 
 All protocols in this repository require a separate configuration file to be passed on the command line in order to run.  Templates for the required config file for each protocol are located in the docstring for that protocol.
 
 For example, to run the Gibson assembly protocol:
 
-    $ python -m autoprotocol-core.nucleic_acid.gibson_assembly path/to/gibson_config.json
+    $ python -m autoprotocol_core.nucleic_acid.gibson_assembly path/to/gibson_config.json
 
 Where `gibson_config.json` looks like:
 ```
