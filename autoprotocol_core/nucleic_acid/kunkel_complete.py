@@ -1,9 +1,9 @@
 import json
 from autoprotocol.util import make_dottable_dict
-from autoprotocol.protocols.kunkel_anneal import kunkel_anneal
-from autoprotocol.protocols.kunkel_kinase import kunkel_kinase
-from autoprotocol.protocols.kunkel_dilute import kunkel_dilute
-from autoprotocol.protocols.kunkel_polymerize import kunkel_polymerize
+from autoprotocol_core.nucleic_acid.kunkel_anneal import kunkel_anneal
+from autoprotocol_core.nucleic_acid.kunkel_kinase import kunkel_kinase
+from autoprotocol_core.nucleic_acid.kunkel_dilute import kunkel_dilute
+from autoprotocol_core.nucleic_acid.kunkel_polymerize import kunkel_polymerize
 
 def kunkel_complete(protocol, params):
     '''

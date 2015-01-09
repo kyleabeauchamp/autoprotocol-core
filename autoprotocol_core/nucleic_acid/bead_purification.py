@@ -30,11 +30,10 @@ def bead_purification(protocol, params):
                 "type": "96-deep",
                 "storage": null,
                 "discard": true
-                },
+            },
             "sample_number": 12,
             "sample_start": "sample_plate/A1",
             "sample_volume": "20:microliter",
-            "destination_start": "sample_plate/B1",
             "initial_incubation_time": "10:minute",
             "initial_incubation_temp": "ambient",
             "initial_mag_adapter_time": "2:minute",
@@ -61,7 +60,7 @@ def bead_purification(protocol, params):
         params.sample_number
     ).set_volume(params.sample_volume)
     destinations = refs.sample_plate.wells_from(
-        params.destination_start, params.sample_number)
+        0, params.sample_number)
     bead_volume = Unit.fromstring(
         params.sample_volume) * Unit(1.8, "microliter")
 
