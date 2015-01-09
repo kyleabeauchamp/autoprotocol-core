@@ -847,7 +847,7 @@
   {
     "name":"RestrictionDigestion",
     "description":"Restriction digestion of DNA with enzyme(s)",
-    "command_string":"autoprotocol_core.nucleic_acid.restriction_digestion`",
+    "command_string":"python -m autoprotocol_core.nucleic_acid.restriction_digestion",
     "inputs":{
       "enzymes": "ref",
       "backbone": "ref",
