@@ -5,7 +5,7 @@
   "protocols": [{
     "name": "BeadPurification",
     "description": "A protocol used to purify PCR samples using Agencourt AMPure XP magnetic beads, which select for DNA fragments larger than 100bp",
-    "command_string": "python -m autoprotocol-core.nucleic_acid.bead_purification",
+    "command_string": "python -m autoprotocol_core.nucleic_acid.bead_purification",
     "inputs": {
       "beads": "ref",
       "resource_plate": "ref",
@@ -79,7 +79,7 @@
   {
     "name":"BradfordAssay",
     "description":"A protein quantification assay using coomassie blue.",
-    "command_string":"python -m autoprotocol-core.protein.bradford_assay",
+    "command_string":"python -m autoprotocol_core.protein.bradford_assay",
     "inputs":{
       "BSA": "ref",
       "water": "ref",
@@ -191,7 +191,7 @@
   {
     "name":"genotyping",
     "description":"Protocol for high-throughput PCR in order to identify samples containing specific alleles.",
-    "command_string":"python -m autoprotocol-core.nucleic_acid.genotyping",
+    "command_string":"python -m autoprotocol_core.nucleic_acid.genotyping",
     "inputs":{
       "allele1_MM": "ref",
       "allele2_MM": "ref",
@@ -285,7 +285,7 @@
   {
     "name":"GibsonAssembly",
     "description":"A protocol to create plasmids from DNA fragments with overlapping sticky ends.",
-    "command_string":"python -m autoprotocol-core.nucleic_acid.gibson_assembly",
+    "command_string":"python -m autoprotocol_core.nucleic_acid.gibson_assembly",
     "inputs":{
       "resources": "ref",
       "destination_plate": "ref",
@@ -333,7 +333,7 @@
   {
     "name":"GoldenBraid",
     "description":"",
-    "command_string":"python -m autoprotocol-core.nucleic_acid.golden_braid",
+    "command_string":"python -m autoprotocol_core.nucleic_acid.golden_braid",
     "inputs":{
       "resources": "ref",
       "destination_plate": "ref",
@@ -401,7 +401,7 @@
   {
     "name":"KunkelAnneal",
     "description":"Step in Kunkel Mutagenesis to anneal kinased oligonucleotides to single-stranded DNA plamids",
-    "command_string":"python -m autoprotocol-core.nucleic_acid.kunkel_anneal",
+    "command_string":"python -m autoprotocol_core.nucleic_acid.kunkel_anneal",
     "inputs":{
       "diluted_oligo_plate": "ref",
       "resource_plate": "ref",
@@ -454,7 +454,7 @@
   {
     "name":"KunkelComplete",
     "description":"Complete Kunkel mutagenesis protocol including kinasing, diluting, annealing, and polymerizing oligonucleotides.",
-    "command_string":"python -m autoprotocol-core.nucleic_acid.kunkel_complete",
+    "command_string":"python -m autoprotocol_core.nucleic_acid.kunkel_complete",
     "inputs":{
       "diluted_oligo_plate": "ref",
       "resource_plate": "ref",
@@ -607,7 +607,7 @@
   {
     "name":"KunkelDilute",
     "description":"Kinased oligonucleotide step of the Kunkel mutagenesis protocol",
-    "command_string":"python -m autoprotocol-core.nucleic_acid.kunkel_dilute",
+    "command_string":"python -m autoprotocol_core.nucleic_acid.kunkel_dilute",
     "inputs":{
       "kinased_oligo_plate": "ref",
       "diluted_oligo_plate": "ref",
@@ -685,7 +685,7 @@
   {
     "name":"KunkelKinase",
     "description":"Oligonucleotide kinase step of the Kunkel mutagenesis protocol",
-    "command_string":"python -m autoprotocol-core.nucleic_acid.kunkel_kinase",
+    "command_string":"python -m autoprotocol_core.nucleic_acid.kunkel_kinase",
     "inputs":{
       "oligo_plate": "ref",
       "kinased_oligo_plate": "ref",
@@ -746,7 +746,7 @@
   {
     "name":"KunkelPolymerize",
     "description":"Polymerization step of the Kunkel mutagenesis protocol",
-    "command_string":"python -m autoprotocol-core.nucleic_acid.kunkel_polymerize",
+    "command_string":"python -m autoprotocol_core.nucleic_acid.kunkel_polymerize",
     "inputs":{
       "resource_plate": "ref",
       "reaction_plate": "ref",
@@ -780,7 +780,7 @@
   {
     "name":"Ligation",
     "description":"Ligation of DNA fragments",
-    "command_string":"python -m autoprotocol-core.nucleic_acid.ligation",
+    "command_string":"python -m autoprotocol_core.nucleic_acid.ligation",
     "inputs":{
       "resources": "ref",
       "water": "ref",
@@ -846,8 +846,8 @@
   },
   {
     "name":"RestrictionDigestion",
-    "description":"",
-    "command_string":"",
+    "description":"Restriction digestion of DNA with enzyme(s)",
+    "command_string":"autoprotocol_core.nucleic_acid.restriction_digestion`",
     "inputs":{
       "enzymes": "ref",
       "backbone": "ref",
