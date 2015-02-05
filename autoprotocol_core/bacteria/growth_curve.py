@@ -32,6 +32,7 @@ def growth_curve(protocol, params):
         protocol.incubate(
             growth_plate,
             where="warm_37",
+            shaking=True,
             duration=incubate_time)
         protocol.absorbance(
             growth_plate,
