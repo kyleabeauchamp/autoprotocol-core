@@ -1,929 +1,759 @@
 {
   "version": "1.0.0",
-  "format": "python",
-  "license": "MIT",
-  "protocols": [{
-    "name": "BeadPurification",
-    "description": "A protocol used to purify PCR samples using Agencourt AMPure XP magnetic beads, which select for DNA fragments larger than 100bp",
-    "command_string": "python -m autoprotocol_core.nucleic_acid.bead_purification",
-    "inputs": {
-      "beads": "ref",
-      "resource_plate": "ref",
-      "sample_plate": "ref",
-      "trash": "ref",
-      "sample_number": "integer",
-      "sample_start": "well",
-      "sample_volume": "volume",
-      "destination_start": "well",
-      "initial_incubation_time": "time",
-      "initial_incubation_temp": "temperature",
-      "initial_mag_adapter_time": "time",
-      "ethanol_wash_vol": "volume",
-      "supernatant_removal_vol": "volume",
-      "wash_removal_vol": "volume",
-      "ethanol_air_dry_time": "volume",
-      "ethanol_air_dry_temp": "temperature",
-      "resuspension_time": "volume",
-      "final_mag_adapter_time": "volume",
-      "resuspension_vol": "volume",
-      "ethanol": "well",
-      "te": "well"
+  "protocols": [
+    {
+      "inputs": {
+        "ethanol": "aliquot+",
+        "te": "aliquot+",
+        "beads": "aliquot+",
+        "sample_plate": "container",
+        "sample_volume": "volume",
+        "initial_incubation_time": "time",
+        "initial_mag_adapter_time": "time",
+        "ethanol_air_dry_temp": "temperature",
+        "wash_removal_vol": "volume",
+        "ethanol_wash_vol": "volume",
+        "sample_number": "integer",
+        "ethanol_air_dry_time": "time",
+        "final_mag_adapter_time": "time",
+        "supernatant_removal_vol": "volume",
+        "resuspension_time": "time",
+        "resuspension_vol": "volume",
+        "initial_incubation_temp": "temperature"
+      },
+      "command_string": "python -m autoprotocol_core.nucleic_acid.bead_purification",
+      "name": "BeadPurification",
+      "preview": {
+        "refs": {
+          "beads": {
+            "type": "micro-1.5",
+            "store": "cold_4"
+          },
+          "TE": {
+            "type": "micro-1.5",
+            "store": "cold_4"
+          },
+          "ethanol": {
+            "type": "micro-1.5",
+            "store": "cold_4"
+          },
+          "sample_plate": {
+            "type": "96-pcr",
+            "store": "cold_4"
+          }
+        },
+        "dependencies": [],
+        "parameters": {
+          "initial_mag_adapter_time": "2:minute",
+          "initial_incubation_time": "10:minute",
+          "te": [
+            "TE/A1"
+          ],
+          "beads": [
+            "beads/A1"
+          ],
+          "final_mag_adapter_time": "5:minute",
+          "wash_removal_vol": "90:microliter",
+          "ethanol_wash_vol": "60:microliter",
+          "sample_number": 20,
+          "ethanol_air_dry_time": "15:minute",
+          "supernatant_removal_vol": "42:microliter",
+          "ethanol": [
+            "ethanol/A1"
+          ],
+          "sample_plate": "sample_plate",
+          "sample_volume": "20:microliter",
+          "ethanol_air_dry_temp": "ambient",
+          "resuspension_time": "5:minute",
+          "resuspension_vol": "50:microliter",
+          "initial_incubation_temp": "ambient"
+        }
+      },
+      "description": "Purify PCR products using magnetic beads "
     },
-    "preview": {
-      "parameters": {
-        "beads": {
-          "id": null,
-          "type": "micro-1.5",
-          "storage": "cold_4",
-          "discard": false
-        },
-        "resource_plate": {
-          "id": null,
-          "type": "96-deep",
-          "storage": "cold_20",
-          "discard": false
-        },
-        "sample_plate": {
-          "id": null,
-          "type": "96-pcr",
-          "storage": "cold_4",
-          "discard": false
-        },
-        "trash": {
-          "id": null,
-          "type": "96-deep",
-          "storage": null,
-          "discard": true
-        },
-        "sample_number": 12,
-        "sample_start": "sample_plate/A1",
-        "sample_volume": "20:microliter",
-        "destination_start": "sample_plate/B1",
-        "initial_incubation_time": "10:minute",
-        "initial_incubation_temp": "ambient",
-        "initial_mag_adapter_time": "2:minute",
-        "ethanol_wash_vol": "60:microliter",
-        "supernatant_removal_vol": "42:microliter",
-        "wash_removal_vol": "90:microliter",
-        "ethanol_air_dry_time": "15:minute",
-        "ethanol_air_dry_temp": "ambient",
-        "resuspension_time": "5:minute",
-        "final_mag_adapter_time": "5:minute",
-        "resuspension_vol": "50:microliter",
-        "ethanol": "resource_plate/A1",
-        "te": "resource_plate/A2"
-      }
-    },
-    "dependencies": []
-  },
-  {
-    "name":"BradfordAssay",
-    "description":"A protein quantification assay using coomassie blue.",
-    "command_string":"python -m autoprotocol_core.protein.bradford_assay",
-    "inputs":{
-      "BSA": "ref",
-      "water": "ref",
-      "coomassie_1": "ref",
-      "coomassie_2": "ref",
-      "coomassie_3": "ref",
-      "coomassie_4": "ref",
-      "coomassie_5": "ref",
-      "coomassie_6": "ref",
-      "lysate_1": "ref",
-      "lysate_2": "ref",
-      "lysate_3": "ref",
-      "bradford_plate": "ref",
-      "measurement_start": "well",
-      "standard_replicates": "integer",
-      "sample_replicates":"integer",
-      "sample_number": "integer",
-      "num_blanks": "integer"
-    },
-    "preview":{
-      "parameters":{
-          "BSA": {
-              "id": null,
-              "type": "micro-1.5",
-              "storage": "cold_20",
-              "discard": false
+    {
+      "inputs": {
+        "BSA": "aliquot",
+        "bradford_plate": "container",
+        "coomassie": "aliquot+",
+        "water": "aliquot",
+        "lysates": "aliquot+",
+        "standard_replicates": "integer",
+        "sample_replicates": "integer",
+        "sample_number": "integer",
+        "num_blanks": "integer"
+      },
+      "command_string": "python -m autoprotocol_core.protein.bradford_assay",
+      "name": "BradfordAssay",
+      "preview": {
+        "refs": {
+          "bradford_plate": {
+            "type": "96-flat",
+            "store": "cold_20"
           },
           "water": {
-              "id": null,
-              "type": "micro-1.5",
-              "storage": "ambient",
-              "discard": false
+            "type": "micro-1.5",
+            "aliquots": {
+              "0": {
+                "volume": "1000:microliter"
+              }
+            },
+            "store": "ambient"
           },
-          "coomassie_1": {
-              "id": null,
-              "type": "micro-1.5",
-              "storage": "cold_4",
-              "discard": false
-          },
-          "coomassie_2": {
-              "id": null,
-              "type": "micro-1.5",
-              "storage": "cold_4",
-              "discard": false
-          },
-          "coomassie_3": {
-              "id": null,
-              "type": "micro-1.5",
-              "storage": "cold_4",
-              "discard": false
-          },
-          "coomassie_4": {
-              "id": null,
-              "type": "micro-1.5",
-              "storage": "cold_4",
-              "discard": false
-          },
-          "coomassie_5": {
-              "id": null,
-              "type": "micro-1.5",
-              "storage": "cold_4",
-              "discard": false
-          },
-          "coomassie_6": {
-              "id": null,
-              "type": "micro-1.5",
-              "storage": "cold_4",
-              "discard": false
+          "coomassie_plate": {
+            "type": "96-deep",
+            "aliquots": {
+              "10": {
+                "volume": "1000:microliter"
+              },
+              "1": {
+                "volume": "1000:microliter"
+              },
+              "0": {
+                "volume": "1000:microliter"
+              },
+              "3": {
+                "volume": "1000:microliter"
+              },
+              "2": {
+                "volume": "1000:microliter"
+              },
+              "5": {
+                "volume": "1000:microliter"
+              },
+              "4": {
+                "volume": "1000:microliter"
+              },
+              "7": {
+                "volume": "1000:microliter"
+              },
+              "6": {
+                "volume": "1000:microliter"
+              },
+              "9": {
+                "volume": "1000:microliter"
+              },
+              "8": {
+                "volume": "1000:microliter"
+              }
+            },
+            "store": "cold_4"
           },
           "lysate_1": {
-              "id": null,
-              "type": "micro-1.5",
-              "storage": "cold_20",
-              "discard": false
-          },
-          "lysate_2": {
-              "id": null,
-              "type": "micro-1.5",
-              "storage": "cold_20",
-              "discard": false
+            "type": "micro-1.5",
+            "aliquots": {
+              "0": {
+                "volume": "1000:microliter"
+              }
+            },
+            "store": "cold_20"
           },
           "lysate_3": {
-              "id": null,
-              "type": "micro-1.5",
-              "storage": "cold_20",
-              "discard": false
+            "type": "micro-1.5",
+            "aliquots": {
+              "0": {
+                "volume": "1000:microliter"
+              }
+            },
+            "store": "cold_20"
           },
-          "standard_plate": {
-              "id": null,
-              "type": "96-pcr",
-              "storage": false,
-              "discard": true
+          "lysate_2": {
+            "type": "micro-1.5",
+            "aliquots": {
+              "0": {
+                "volume": "1000:microliter"
+              }
+            },
+            "store": "cold_20"
           },
-          "bradford_plate": {
-              "id": null,
-              "type": "96-flat",
-              "storage": "cold_20",
-              "discard": false
-          },
-          "measurement_start": "bradford_plate/A4",
-          "standard_replicates": 3,
-          "sample_replicates":3,
-          "sample_number": 3,
-          "num_blanks": 3
+          "BSA": {
+            "type": "micro-1.5",
+            "aliquots": {
+              "0": {
+                "volume": "1000:microliter"
+              }
+            },
+            "store": "cold_20"
           }
+        },
+        "dependencies": [],
+        "parameters": {
+          "sample_replicates": 3,
+          "num_blanks": 3,
+          "lysates": [
+            "lysate_1/0",
+            "lysate_2/0",
+            "lysate_3/0"
+          ],
+          "sample_number": 3,
+          "water": "water/0",
+          "standard_replicates": 3,
+          "coomassie": [
+            "coomassie_plate/0",
+            "coomassie_plate/1",
+            "coomassie_plate/2",
+            "coomassie_plate/3",
+            "coomassie_plate/4",
+            "coomassie_plate/5",
+            "coomassie_plate/6",
+            "coomassie_plate/7",
+            "coomassie_plate/8",
+            "coomassie_plate/9",
+            "coomassie_plate/10"
+          ],
+          "bradford_plate": "bradford_plate",
+          "BSA": "BSA/0"
+        }
+      },
+      "description": "Measure protein concentration of samples."
     },
-    "dependencies": []
-  },
-  {
-    "name":"genotyping",
-    "description":"Protocol for high-throughput PCR in order to identify samples containing specific alleles.",
-    "command_string":"python -m autoprotocol_core.nucleic_acid.genotyping",
-    "inputs":{
-      "allele1_MM": "ref",
-      "allele2_MM": "ref",
-      "dna_source": "ref",
-      "pcr": "ref",
-      "pcr_match_sample_layout": "bool",
-      "mastermix_vol_per_rxn": "volume",
-      "sample_vol": "volume",
-      "allele1_samples": "wells",
-      "allele2_samples": "wells",
-      "pcr_cycles": "integer",
-      "activation_time": "time",
-      "activation_temp": "temperature",
-      "denaturation_time": "time",
-      "denaturation_temp": "temperature",
-      "annealing_time": "time",
-      "annealing_temp": "temperature",
-      "extension_time": "time",
-      "extension_temp": "temperature"
-    },
-    "preview":{
-      "parameters":{
-          "allele1_MM": {
-              "id": null,
-              "type": "micro-1.5",
-              "storage": "cold_20",
-              "discard": false
+    {
+      "inputs": {
+        "pcr_plate": "container",
+        "samples": "aliquot+",
+        "DNA_source_vol_per_rxn": "volume",
+        "primers": "aliquot+",
+        "primer_vol_per_rxn": "volume",
+        "MyTaq": "aliquot",
+        "polymerase_vol_per_rxn": "volume",
+        "MyTaq_buffer": "aliquot",
+        "buffer_vol_per_rxn": "volume",
+        "water": "aliquot",
+        "mastermix_vol_per_rxn": "volume",
+        "pcr_cycles": "integer",
+        "activation_temp": "temperature",
+        "activation_time": "time",
+        "denaturation_temp": "temperature",
+        "denaturation_time": "time",
+        "annealing_temp": "temperature",
+        "annealing_time": "time",
+        "extension_temp": "temperature",
+        "extension_time": "time"
+      },
+      "command_string": "python -m autoprotocol_core.nucleic_acid.genotyping",
+      "name": "Genotyping",
+      "preview": {
+        "refs": {
+          "dna_source":{
+            "discard": false,
+            "type": "96-pcr",
+            "store": "cold_4"
           },
-          "allele2_MM": {
-              "id": null,
-              "type": "micro-1.5",
-              "storage": "cold_20",
-              "discard": false
+          "primer1": {
+            "discard": false,
+            "type": "micro-1.5",
+            "store": "cold_20"
           },
-          "dna_source": {
-              "id": null,
-              "type": "96-flat",
-              "storage": "cold_4",
-              "discard": false
+          "primer2": {
+            "discard": false,
+            "type": "micro-1.5",
+            "store": "cold_20"
           },
-          "pcr": {
-              "id": null,
-              "type": "96-pcr",
-              "storage": "cold_20",
-              "discard": false
+          "water": {
+            "discard": false,
+            "type": "micro-1.5",
+            "store": "cold_20"
           },
-          "pcr_match_sample_layout":true,
+          "MyTaq": {
+            "discard": false,
+            "type": "micro-1.5",
+            "store": "cold_20"
+          },
+          "MyTaq_buffer": {
+            "discard": false,
+            "type": "micro-1.5",
+            "store": "cold_20"
+          },
+          "pcr_plate": {
+            "store": "cold_20",
+            "type": "96-pcr"
+          }
+        },
+        "dependencies": [],
+        "parameters": {
+          "DNA_source_vol_per_rxn": "3:microliter",
+          "annealing_temp": "55:celsius",
+          "annealing_time": "15:second",
+          "activation_temp": "95:celsius",
+          "polymerase_vol_per_rxn": "0.18:microliter",
+          "samples": [
+            "dna_source/0",
+            "dna_source/1",
+            "dna_source/2",
+            "dna_source/3",
+            "dna_source/4",
+            "dna_source/5",
+            "dna_source/6",
+            "dna_source/7",
+            "dna_source/8",
+            "dna_source/9",
+            "dna_source/10",
+            "dna_source/11"
+          ],
+          "buffer_vol_per_rxn": "3:microliter",
+          "activation_time": "2:minute",
+          "primer_vol_per_rxn": "0.5:microliter",
+          "MyTaq_buffer": "MyTaq_buffer/A1",
+          "pcr_plate": "pcr_plate",
           "mastermix_vol_per_rxn": "14:microliter",
-          "sample_vol": "3:microliter",
-          "allele1_samples": [
-              "dna_source/0",
-              "dna_source/1",
-              "dna_source/2",
-              "dna_source/3",
-              "dna_source/4",
-              "dna_source/5",
-              "dna_source/6",
-              "dna_source/7",
-              "dna_source/8",
-              "dna_source/9",
-              "dna_source/10",
-              "dna_source/11"
+          "extension_time": "20:second",
+          "water": "water/A1",
+          "primers": [
+            "primer1/A1",
+            "primer2/A1"
           ],
-          "allele2_samples": [
-              "dna_source/12",
-              "dna_source/13",
-              "dna_source/14",
-              "dna_source/15",
-              "dna_source/16",
-              "dna_source/17",
-              "dna_source/18",
-              "dna_source/19",
-              "dna_source/20",
-              "dna_source/21",
-              "dna_source/22",
-              "dna_source/23"
+          "denaturation_time": "10:second",
+          "pcr_cycles": 30,
+          "denaturation_temp": "94:celsius",
+          "extension_temp": "72:celsius",
+          "MyTaq": "MyTaq/A1"
+        }
+      },
+      "description": "Perform PCR on extracted DNA to detect specific alleles."
+    },
+    {
+      "inputs": {
+        "constructs": "aliquot++",
+        "golden_braid_pcr_cycles": "integer",
+        "mastermix": "aliquot",
+        "mastermix_volume": "volume",
+        "water": "aliquot",
+        "digestion_temp": "temperature",
+        "digestion_time": "time",
+        "ligation_temp": "temperature",
+        "ligation_time": "time"
+      },
+      "command_string": "python -m autoprotocol_core.nucleic_acid.golden_braid",
+      "name": "GoldenBraid",
+      "preview": {
+        "refs": {
+          "mastermix": {
+            "type": "micro-1.5",
+            "store": "cold_4",
+            "aliquots":{
+              "0": {
+                "volume": "890:microliter"
+              }
+            }
+          },
+          "resources": {
+            "type": "96-pcr",
+            "aliquots": {
+              "B4": {
+                "volume": "100:microliter"
+              },
+              "A1": {
+                "volume": "100:microliter",
+                "properties": {
+                  "Concentration": "53:nanogram/microliter"
+                }
+              },
+              "B5": {
+                "volume": "100:microliter",
+                "properties": {
+                  "Concentration": "75:nanogram/microliter"
+                }
+              },
+              "A3": {
+                "volume": "100:microliter"
+              },
+              "B1": {
+                "volume": "100:microliter",
+                "properties": {
+                  "Concentration": "123:nanogram/microliter"
+                }
+              },
+              "B2": {
+                "volume": "100:microliter"
+              },
+              "B3": {
+                "volume": "100:microliter",
+                "properties": {
+                  "Concentration": "95:nanogram/microliter"
+                }
+              },
+              "C2": {
+                "volume": "100:microliter"
+              },
+              "C1": {
+                "volume": "100:microliter"
+              },
+              "D1": {
+                "volume": "100:microliter"
+              }
+            },
+            "store": "cold_4"
+          },
+          "water":{
+            "type": "micro-1.5",
+            "store": "cold_4"
+          }
+        },
+        "dependencies": [],
+        "parameters": {
+          "mastermix_volume": "2.1:microliter",
+          "water": "water/0",
+          "digestion_temp": "37:celsius",
+          "digestion_time": "2:minute",
+          "constructs": [
+            [
+              "resources/B1",
+              "resources/B3",
+              "resources/A1"
+            ],
+            [
+              "resources/A1",
+              "resources/B3",
+              "resources/B5"
+            ],
+            [],
+            []
           ],
-      "pcr_cycles": 30,
-      "activation_time": "2:minute",
-      "activation_temp": "95:celsius",
-      "denaturation_time": "10:second",
-      "denaturation_temp": "94:celsius",
-      "annealing_time": "15:second",
-      "annealing_temp": "55:celsius",
-      "extension_time": "20:second",
-      "extension_temp": "72:celsius"
-      }
+          "golden_braid_pcr_cycles": 45,
+          "ligation_time": "5:minute",
+          "ligation_temp": "16:celsius",
+          "mastermix": "mastermix/0"
+        }
+      },
+      "description": "Assemble plasmids using Golden Gate Assembly "
     },
-    "dependencies": []
-  },
-  {
-    "name":"GibsonAssembly",
-    "description":"A protocol to create plasmids from DNA fragments with overlapping sticky ends.",
-    "command_string":"python -m autoprotocol_core.nucleic_acid.gibson_assembly",
-    "inputs":{
-      "resources": "ref",
-      "destination_plate": "ref",
-      "backbone_loc":"well",
-      "insert1_loc": "well",
-      "insert2_loc": "well",
-      "gibson_mix_loc": "well",
-      "final_mix_loc": "well",
-      "destination_well" : "well",
-      "backbone_volume": "volume",
-      "insert1_volume": "volume",
-      "insert2_volume": "volume",
-      "gibson_mix_volume": "volume",
-      "gibson_reaction_time": "time"
-    },
-    "preview":{
-      "parameters":{
-        "resources": {
-            "id": null,
+    {
+      "inputs": {
+        "diluted_oligos": "aliquot+",
+        "oligo_vol": "volume",
+        "ssDNA_mix": "aliquot",
+        "ssDNA_mix_vol": "volume",
+        "annealing_plate": "container"
+      },
+      "command_string": "python -m autoprotocol_core.nucleic_acid.kunkel_anneal",
+      "name": "KunkelAnneal",
+      "preview": {
+        "refs": {
+          "ssDNA": {
+            "type": "micro-1.5",
+            "aliquots": {
+              "0": {
+                "volume": "500:microliter"
+              }
+            },
+            "store": "cold_20"
+          },
+          "diluted_oligo_plate": {
             "type": "96-pcr",
-            "storage": "cold_20",
-            "discard": false
-        },
-        "destination_plate": {
-            "id": null,
+            "store": "cold_20"
+          },
+          "annealing_plate": {
             "type": "96-pcr",
-            "storage": "cold_4",
-            "discard": false
+            "store": "ambient"
+          }
         },
-        "backbone_loc":"resources/A1",
-        "insert1_loc": "resources/A2",
-        "insert2_loc": "resources/A3",
-        "gibson_mix_loc": "resources/A4",
-        "final_mix_loc": "resources/A5",
-        "destination_well" : "destination_plate/A1",
-        "backbone_volume": "5:microliter",
-        "insert1_volume": "2.5:microliter",
-        "insert2_volume": "2.5:microliter",
-        "gibson_mix_volume": "10:microliter",
-        "gibson_reaction_time": "40:minute"
-      }
-    },
-    "dependencies": []
-  },
-  {
-    "name":"GoldenBraid",
-    "description":"",
-    "command_string":"python -m autoprotocol_core.nucleic_acid.golden_braid",
-    "inputs":{
-      "resources": "ref",
-      "destination_plate": "ref",
-      "reaction_start": "well",
-      "MM_loc": "well",
-      "T4_ligase": "well",
-      "enzyme": "well",
-      "backbone": "well",
-      "buffer": "well",
-      "fragment_1": "well",
-      "fragment_2": "well",
-      "fragment_3": "well",
-      "fragment_4": "well",
-      "fragment_5": "well",
-      "reaction_number": "integer",
-      "backbone_vol": "volume",
-      "enzyme_vol": "volume",
-      "ligase_vol": "volume",
-      "buffer_vol": "volume",
-      "fragment_vol": "volume",
-      "water_vol": "volume",
-      "ligation_time": "time",
-      "deactivation_time": "time",
-      "deactivation_temp": "time"
-    },
-    "preview":{
-      "parameters": {
-        "resources": {
-            "id": null,
-            "type": "96-pcr",
-            "storage": "cold_4",
-            "discard": false
-        },
-        "destination_plate": {
-            "id": null,
-            "type": "96-pcr",
-            "storage": "cold_4",
-            "discard": false
-        },
-        "reaction_start": "destination_plate/A1",
-        "MM_loc": "resources/A3",
-        "T4_ligase": "resources/C1",
-        "enzyme": "resources/C2",
-        "backbone": "resources/A1",
-        "buffer": "resources/D1",
-        "fragment_1": "resources/B1",
-        "fragment_2": "resources/B2",
-        "fragment_3": "resources/B3",
-        "fragment_4": "resources/B4",
-        "fragment_5": "resources/B5",
-        "reaction_number": 10,
-        "backbone_vol": "1:microliter",
-        "enzyme_vol": "0.3:microliter",
-        "ligase_vol": "0.6:microliter",
-        "buffer_vol": "1:microliter",
-        "fragment_vol": "3:microliter",
-        "water_vol": "2:microliter",
-        "ligation_time": "10:minute",
-        "deactivation_time": "5:minute",
-        "deactivation_temp": "65:celsius"
-      }
-    },
-    "dependencies": []
-  },
-  {
-    "name":"KunkelAnneal",
-    "description":"Step in Kunkel Mutagenesis to anneal kinased oligonucleotides to single-stranded DNA plamids",
-    "command_string":"python -m autoprotocol_core.nucleic_acid.kunkel_anneal",
-    "inputs":{
-      "diluted_oligo_plate": "ref",
-      "resource_plate": "ref",
-      "reaction_plate": "ref",
-      "ssDNA_mix_vol": "volume",
-      "ssDNA_mix_loc": "well",
-      "oligo_vol": "volume",
-      "oligos": "wells"
-    },
-    "preview":{
-    "parameters":{
-        "diluted_oligo_plate": {
-            "id": null,
-            "type": "96-pcr",
-            "storage": "cold_20",
-            "discard": false
-        },
-        "resource_plate": {
-            "id": null,
-            "type": "96-pcr",
-            "storage": "cold_20",
-            "discard": false
-        },
-        "reaction_plate": {
-            "id": null,
-            "type": "96-pcr",
-            "storage": "ambient",
-            "discard": false
-        },
-        "ssDNA_mix_vol": "2.2:microliter",
-        "ssDNA_mix_loc": "resource_plate/D1",
-        "oligo_vol": "2:microliter",
-        "oligos": [
+        "dependencies": [],
+        "parameters": {
+          "diluted_oligos": [
             "diluted_oligo_plate/0",
-            "diluted_oligo_plate/1",
-            "diluted_oligo_plate/2",
-            "diluted_oligo_plate/3",
-            "diluted_oligo_plate/4",
-            "diluted_oligo_plate/5",
-            "diluted_oligo_plate/6",
-            "diluted_oligo_plate/7",
-            "diluted_oligo_plate/8",
-            "diluted_oligo_plate/9",
-            "diluted_oligo_plate/10"
-        ]
-    }
+            "diluted_oligo_plate/1"
+          ],
+          "annealing_plate": "annealing_plate",
+          "ssDNA_mix_vol": "2.2:microliter",
+          "oligo_vol": "2:microliter",
+          "ssDNA_mix": "ssDNA/0"
+        }
       },
-    "dependencies": []
-  },
-  {
-    "name":"KunkelComplete",
-    "description":"Complete Kunkel mutagenesis protocol including kinasing, diluting, annealing, and polymerizing oligonucleotides.",
-    "command_string":"python -m autoprotocol_core.nucleic_acid.kunkel_complete",
-    "inputs":{
-      "diluted_oligo_plate": "ref",
-      "resource_plate": "ref",
-      "reaction_plate": "ref",
-      "oligo_plate": "ref",
-      "kinased_oligo_plate": "ref",
-      "H2O_1": "ref",
-      "H2O_2": "ref",
-      "H2O_3": "ref",
-      "oligo_number": "integer",
-      "oligo_start": "well",
-      "kinase_mix_loc": "wells",
-      "kinase_incubation_time": "time",
-      "kinase_incubation_temp": "temperature",
-      "kinase_MM_volume": "volume",
-      "conc_oligo_volume": "volume",
-      "mix_volume": "volume",
-      "kinased_start": "well",
-      "kinase_time": "time",
-      "kinased_oligos": "wells",
-      "combos": "combinations",
-      "water": "wells",
-      "water_vol": "volume",
-      "dilution_start": "well",
-      "oligo_vol": "volume",
-      "ssDNA_mix_vol": "volume",
-      "ssDNA_mix_loc": "well",
-      "oligo_vol": "volume",
-      "oligos": "wells",
-      "polymerize_MM_vol": "volume",
-      "polymerize_MM_loc": "well",
-      "kunkel_number": "integer",
-      "reaction_start": "well"
+      "description": "Step 3 of the Kunkel Mutagenesis protocol - anneal kinased oligonucleotides to single-stranded DNA backbone"
+    },
+    {
+      "inputs": {
+        "water": "aliquot+",
+        "kinased_oligos": "aliquot+",
+        "water_vol": "volume",
+        "oligo_vol": "volume",
+        "constructs": "aliquot++",
+        "diluted_oligo_plate": "container"
       },
-    "preview":{
-      "parameters":{
-        "oligo_plate": {
-            "id": null,
-            "type": "96-pcr",
-            "storage": "cold_20",
-            "discard": false
-        },
-        "kinased_oligo_plate": {
-            "id": null,
-            "type": "96-pcr",
-            "storage": "cold_20",
-            "discard": false
-        },
-        "diluted_oligo_plate": {
-            "id": null,
+      "command_string": "python -m autoprotocol_core.nucleic_acid.kunkel_dilute",
+      "name": "KunkelDilute",
+      "preview": {
+        "refs": {
+          "H2O_1": {
+            "type": "micro-1.5",
+            "aliquots": {
+              "0": {
+                "volume": "1500:microliter"
+              }
+            },
+            "store": "ambient"
+          },
+          "H2O_3": {
+            "type": "micro-1.5",
+            "aliquots": {
+              "0": {
+                "volume": "1500:microliter"
+              }
+            },
+            "store": "ambient"
+          },
+          "H2O_2": {
+            "type": "micro-1.5",
+            "aliquots": {
+              "0": {
+                "volume": "1500:microliter"
+              }
+            },
+            "store": "ambient"
+          },
+          "diluted_oligo_plate": {
             "type": "96-flat",
-            "storage": "cold_20",
-            "discard": false
+            "store": "cold_20"
+          },
+          "kinased_oligo_plate": {
+            "type": "96-pcr",
+            "aliquots": {
+              "11": {
+                "volume": "30:microliter"
+              },
+              "10": {
+                "volume": "30:microliter"
+              },
+              "1": {
+                "volume": "30:microliter"
+              },
+              "0": {
+                "volume": "30:microliter"
+              },
+              "3": {
+                "volume": "30:microliter"
+              },
+              "2": {
+                "volume": "30:microliter"
+              },
+              "5": {
+                "volume": "30:microliter"
+              },
+              "4": {
+                "volume": "30:microliter"
+              },
+              "7": {
+                "volume": "30:microliter"
+              },
+              "6": {
+                "volume": "30:microliter"
+              },
+              "9": {
+                "volume": "30:microliter"
+              },
+              "8": {
+                "volume": "30:microliter"
+              }
+            },
+            "store": "cold_20"
+          }
         },
-        "resource_plate": {
-            "id": null,
-            "type": "384-pcr",
-            "storage": "cold_20",
-            "discard": false
-        },
-        "reaction_plate": {
-            "id": null,
-            "type": "384-pcr",
-            "storage": "ambient",
-            "discard": false
-        },
-        "H2O_1": {
-            "id": null,
-            "type": "micro-1.5",
-            "storage": "ambient",
-            "discard": false
-        },
-        "H2O_2": {
-            "id": null,
-            "type": "micro-1.5",
-            "storage": "ambient",
-            "discard": false
-        },
-        "H2O_3": {
-            "id": null,
-            "type": "micro-1.5",
-            "storage": "ambient",
-            "discard": false
-        },
-        "oligo_number": 12,
-        "oligo_start": "oligo_plate/A1",
-        "kinase_mix_loc": [
-            "resource_plate/1",
-            "resource_plate/2",
-            "resource_plate/3",
-            "resource_plate/4",
-            "resource_plate/5",
-            "resource_plate/6",
-            "resource_plate/7"
-        ],
-        "kinase_incubation_time": "1:hour",
-        "kinase_incubation_temp": "37:celsius",
-        "kinase_MM_volume": "23:microliter",
-        "conc_oligo_volume": "7:microliter",
-        "mix_volume": "10:microliter",
-        "kinased_start": "kinased_oligo_plate/A1",
-        "kinase_time": "60:minute",
-        "kinased_oligos": [
-            "kinased_oligo_plate/A1",
-            "kinased_oligo_plate/B1",
-            "kinased_oligo_plate/C1",
-            "kinased_oligo_plate/D1",
-            "kinased_oligo_plate/E1",
-            "kinased_oligo_plate/F1",
-            "kinased_oligo_plate/G1",
-            "kinased_oligo_plate/H1",
-            "kinased_oligo_plate/A2",
-            "kinased_oligo_plate/B2",
-            "kinased_oligo_plate/C2",
-            "kinased_oligo_plate/D2",
-            "kinased_oligo_plate/E2",
-            "kinased_oligo_plate/F2"
+        "dependencies": [],
+        "parameters": {
+          "kinased_oligos": [
+            "kinased_oligo_plate/1",
+            "kinased_oligo_plate/2",
+            "kinased_oligo_plate/3",
+            "kinased_oligo_plate/4",
+            "kinased_oligo_plate/5",
+            "kinased_oligo_plate/6",
+            "kinased_oligo_plate/7",
+            "kinased_oligo_plate/8",
+            "kinased_oligo_plate/9",
+            "kinased_oligo_plate/10",
+            "kinased_oligo_plate/11"
+          ],
+          "water_vol": "198:microliter",
+          "oligo_vol": "2:microliter",
+          "constructs": [
+            [
+              "kinased_oligo_plate/2",
+              "kinased_oligo_plate/8"
             ],
-        "combos": [[2,8],[1,2,7],[3,5,12],[2,5,11],[2,6,8],[2,5,8],[4,5,13],[1,4,5,10],[2,11],[4,14]],
-        "water": [
+            [
+              "kinased_oligo_plate/1",
+              "kinased_oligo_plate/2",
+              "kinased_oligo_plate/7"
+            ],
+            [
+              "kinased_oligo_plate/3",
+              "kinased_oligo_plate/5",
+              "kinased_oligo_plate/2"
+            ],
+            [],
+            [],
+            [],
+            [],
+            [],
+            [],
+            []
+          ],
+          "water": [
             "H2O_1/0",
             "H2O_2/0",
             "H2O_3/0"
-        ],
-        "water_vol": "198:microliter",
-        "dilution_start": "diluted_oligo_plate/A1",
-        "oligo_vol": "2:microliter",
-        "ssDNA_mix_vol": "2.2:microliter",
-        "ssDNA_mix_loc": "resource_plate/D1",
-        "oligo_vol": "2:microliter",
-        "oligos": [
-            "diluted_oligo_plate/A1",
-            "diluted_oligo_plate/B1",
-            "diluted_oligo_plate/C1",
-            "diluted_oligo_plate/D1",
-            "diluted_oligo_plate/E1",
-            "diluted_oligo_plate/F1",
-            "diluted_oligo_plate/G1",
-            "diluted_oligo_plate/H1",
-            "diluted_oligo_plate/A2",
-            "diluted_oligo_plate/B2"
-        ],
-        "polymerize_MM_vol": "2.2:microliter",
-        "polymerize_MM_loc": "resource_plate/E1",
-        "kunkel_number": 10,
-        "reaction_start": "reaction_plate/A1"
-    }},
-    "dependencies": []
-  },
-  {
-    "name":"KunkelDilute",
-    "description":"Kinased oligonucleotide step of the Kunkel mutagenesis protocol",
-    "command_string":"python -m autoprotocol_core.nucleic_acid.kunkel_dilute",
-    "inputs":{
-      "kinased_oligo_plate": "ref",
-      "diluted_oligo_plate": "ref",
-      "H2O_1": "ref",
-      "H2O_2": "ref",
-      "H2O_3": "ref",
-      "kinased_oligos": "wells",
-      "combos": "combinations",
-      "water": "wells",
-      "water_vol": "volume",
-      "dilution_start": "well",
-      "oligo_vol": "volume"
+          ],
+          "diluted_oligo_plate": "diluted_oligo_plate"
+        }
+      },
+      "description": "Step 2 of Kunkel Mutagenesis Protocol - dilute kinased oligonucleotides 100x"
     },
-    "preview":{
-      "parameters":{
-        "kinased_oligo_plate": {
-            "id": null,
+    {
+      "inputs": {
+        "oligos": "aliquot+",
+        "conc_oligo_volume": "volume",
+        "kinase_mix": "aliquot",
+        "kinase_mix_volume": "volume",
+        "kinase_incubation_temp": "temperature",
+        "kinase_incubation_time": "time"
+      },
+      "command_string": "python -m autoprotocol_core.nucleic_acid.kunkel_kinase",
+      "name": "KunkelKinase",
+      "preview": {
+        "refs": {
+          "oligo_plate": {
             "type": "96-pcr",
-            "storage": "cold_20",
-            "discard": false
-        },
-        "diluted_oligo_plate": {
-            "id": null,
-            "type": "96-flat",
-            "storage": "cold_20",
-            "discard": false
-        },
-        "H2O_1": {
-            "id": null,
+            "aliquots": {
+              "11": {
+                "volume": "100:microliter"
+              },
+              "10": {
+                "volume": "100:microliter"
+              },
+              "1": {
+                "volume": "100:microliter"
+              },
+              "0": {
+                "volume": "100:microliter"
+              },
+              "3": {
+                "volume": "100:microliter"
+              },
+              "2": {
+                "volume": "100:microliter"
+              },
+              "5": {
+                "volume": "100:microliter"
+              },
+              "4": {
+                "volume": "100:microliter"
+              },
+              "7": {
+                "volume": "100:microliter"
+              },
+              "6": {
+                "volume": "100:microliter"
+              },
+              "9": {
+                "volume": "100:microliter"
+              },
+              "8": {
+                "volume": "100:microliter"
+              }
+            },
+            "store": "cold_20"
+          },
+          "kinase_mix": {
             "type": "micro-1.5",
-            "storage": "ambient",
-            "discard": false
+            "aliquots": {
+              "0": {
+                "volume": "1000:microliter"
+              }
+            },
+            "store": "cold_20"
+          }
         },
-        "H2O_2": {
-            "id": null,
-            "type": "micro-1.5",
-            "storage": "ambient",
-            "discard": false
-        },
-        "H2O_3": {
-            "id": null,
-            "type": "micro-1.5",
-            "storage": "ambient",
-            "discard": false
-        },
-        "kinased_oligos": [
-            "kinased_oligo_plate/A1",
-            "kinased_oligo_plate/B1",
-            "kinased_oligo_plate/C1",
-            "kinased_oligo_plate/D1",
-            "kinased_oligo_plate/E1",
-            "kinased_oligo_plate/F1",
-            "kinased_oligo_plate/G1",
-            "kinased_oligo_plate/H1",
-            "kinased_oligo_plate/A2",
-            "kinased_oligo_plate/B2",
-            "kinased_oligo_plate/C2",
-            "kinased_oligo_plate/D2",
-            "kinased_oligo_plate/E2",
-            "kinased_oligo_plate/F2"
-            ],
-        "combos": [[2,8],[1,2,7],[3,5,12],[2,5,11],[2,6,8],[2,5,8],[4,5,13],[1,4,5,10],[2,11],[4,14]],
-        "water": [
-            "H2O_1/0",
-            "H2O_2/0",
-            "H2O_3/0"
-        ],
-        "water_vol": "198:microliter",
-        "dilution_start": "diluted_oligo_plate/A1",
-        "oligo_vol": "2:microliter"
-    }
-  },
-    "dependencies": []
-  },
-  {
-    "name":"KunkelKinase",
-    "description":"Oligonucleotide kinase step of the Kunkel mutagenesis protocol",
-    "command_string":"python -m autoprotocol_core.nucleic_acid.kunkel_kinase",
-    "inputs":{
-      "oligo_plate": "ref",
-      "kinased_oligo_plate": "ref",
-      "resource_plate": "ref",
-      "oligo_number": "integer",
-      "oligo_start": "wells",
-      "kinase_mix_loc": "wells",
-      "kinase_incubation_time": "time",
-      "kinase_incubation_temp": "temperature",
-      "kinase_MM_volume": "volume",
-      "conc_oligo_volume": "volume",
-      "mix_volume": "volume",
-      "kinased_start": "well",
-      "kinase_time": "time"
+        "dependencies": [],
+        "parameters": {
+          "kinase_incubation_temp": "37:celsius",
+          "kinase_incubation_time": "1:hour",
+          "conc_oligo_volume": "7:microliter",
+          "kinase_mix": "kinase_mix/0",
+          "kinase_mix_volume": "23:microliter",
+          "oligos": [
+            "oligo_plate/0",
+            "oligo_plate/1",
+            "oligo_plate/2",
+            "oligo_plate/3",
+            "oligo_plate/4",
+            "oligo_plate/5",
+            "oligo_plate/6",
+            "oligo_plate/7",
+            "oligo_plate/8",
+            "oligo_plate/9",
+            "oligo_plate/10",
+            "oligo_plate/11"
+          ]
+        }
+      },
+      "description": "Step 1 of Kunkel Protocol - Kinase concentrated oligonucleotides"
     },
-    "preview":{
-      "parameters":{
-        "oligo_plate": {
-            "id": null,
-            "type": "96-pcr",
-            "storage": "cold_20",
-            "discard": false
-        },
-        "kinased_oligo_plate": {
-            "id": null,
-            "type": "96-pcr",
-            "storage": "cold_20",
-            "discard": false
-        },
-        "resource_plate": {
-            "id": null,
-            "type": "384-pcr",
-            "storage": "cold_20",
-            "discard": false
-        },
-        "oligo_number": 12,
-        "oligo_start": "oligo_plate/A1",
-        "kinase_mix_loc": [
-            "resource_plate/1",
-            "resource_plate/2",
-            "resource_plate/3",
-            "resource_plate/4",
-            "resource_plate/5",
-            "resource_plate/6",
-            "resource_plate/7"
-        ],
-        "kinase_incubation_time": "1:hour",
-        "kinase_incubation_temp": "37:celsius",
-        "kinase_MM_volume": "23:microliter",
-        "conc_oligo_volume": "7:microliter",
-        "mix_volume": "10:microliter",
-        "kinased_start": "kinased_oligo_plate/A1",
-        "kinase_time": "60:minute"
-    }
-  },
-    "dependencies": []
-  },
-  {
-    "name":"KunkelPolymerize",
-    "description":"Polymerization step of the Kunkel mutagenesis protocol",
-    "command_string":"python -m autoprotocol_core.nucleic_acid.kunkel_polymerize",
-    "inputs":{
-      "resource_plate": "ref",
-      "reaction_plate": "ref",
-      "polymerize_MM_vol": "volume",
-      "polymerize_MM_loc": "volume",
-      "kunkel_number": "integer",
-      "reaction_start": "well"
-    },
-    "preview":{
-      "parameters":{
-        "resource_plate": {
-            "id": null,
-            "type": "384-pcr",
-            "storage": "cold_20",
-            "discard": false
-        },
-        "reaction_plate": {
-            "id": null,
-            "type": "384-pcr",
-            "storage": "ambient",
-            "discard": false
-        },
-        "polymerize_MM_vol": "2.2:microliter",
-        "polymerize_MM_loc": "resource_plate/E1",
-        "kunkel_number": 10,
-        "reaction_start": "reaction_plate/A1"
-    }
-  },
-    "dependencies": []
-  },
-  {
-    "name":"Ligation",
-    "description":"Ligation of DNA fragments",
-    "command_string":"python -m autoprotocol_core.nucleic_acid.ligation",
-    "inputs":{
-      "resources": "ref",
-      "water": "ref",
-      "destination_plate": "ref",
-      "T4_Ligase": "well",
-      "T4_buffer": "well",
-      "cut_backbone": "well",
-      "insert_1": "well",
-      "insert_2": "well",
-      "insert_3": "well",
-      "construct_1": "well",
-      "construct_2": "well",
-      "construct_3": "well",
-      "ligase_vol": "volume",
-      "buffer_vol": "volume",
-      "source_DNA_vol": "volume",
-      "insert_vol": "volume",
-      "water_vol": "volume",
-      "ligation_time": "time",
-      "deactivation_time": "time",
-      "deactivation_temp": "temperature"
-    },
-    "preview":{
-      "parameters":{
-        "resources": {
-            "id": null,
-            "type": "384-pcr",
-            "storage": "cold_20",
-            "discard": false
-        },
-        "water": {
-            "id": null,
+    {
+      "inputs": {
+        "number_of_rxns_to_polymerize": "integer",
+        "polymerize_MM": "aliquot",
+        "polymerize_MM_vol": "volume",
+        "reaction_plate": "container"
+      },
+      "command_string": "python -m autoprotocol_core.nucleic_acid.kunkel_polymerize",
+      "name": "KunkelPolymerize",
+      "preview": {
+        "refs": {
+          "polymerize_MM": {
             "type": "micro-1.5",
-            "storage": "cold_4",
-            "discard": false
+            "aliquots": {
+              "0": {
+                "volume": "100:microliter"
+              }
+            },
+            "store": "cold_20"
+          },
+          "reaction_plate": {
+            "type": "384-pcr",
+            "store": "cold_20"
+          }
         },
-        "destination_plate": {
-            "id": null,
-            "type": "96-pcr",
-            "storage": "cold_4",
-            "discard": false
-        },
-        "T4_Ligase": "resources/A1",
-        "T4_buffer": "resources/A2",
-        "cut_backbone": "resources/B1",
-        "insert_1": "resources/B2",
-        "insert_2": "resources/B3",
-        "insert_3": "resources/B4",
-        "construct_1": "destination_plate/B1",
-        "construct_2": "destination_plate/B2",
-        "construct_3": "destination_plate/B3",
-        "ligase_vol": "3:microliter",
-        "buffer_vol": "2:microliter",
-        "source_DNA_vol": "1:microliter",
-        "insert_vol": "3:microliter",
-        "water_vol": "2:microliter",
-        "ligation_time": "10:minute",
-        "deactivation_time": "5:minute",
-        "deactivation_temp": "65:celsius"
+        "dependencies": [],
+        "parameters": {
+          "number_of_rxns_to_polymerize": 2,
+          "polymerize_MM": "polymerize_MM/0",
+          "polymerize_MM_vol": "2.2:microliter",
+          "reaction_plate": "reaction_plate"
+        }
+      },
+      "description": "Step 4 of Kunkel Mutagenesis Protocol- polymerize mutated plasmid"
+    },
+    {
+    "name": "GrowthCurve",
+    "description": "Bacterial growth curve",
+    "command_string": "python -m autoprotocol_core.bacteria.growth_curve",
+    "inputs": {
+      "samples": "aliquot+",
+      "sample_vol": "volume",
+      "replicates": "integer",
+      "num_negative_controls": "integer",
+      "total_growth_time": "time",
+      "num_reads": "integer"
+    },
+    "preview": {
+      "refs": {
+        "bacteria": {
+          "type": "micro-2.0",
+          "store": "cold_20"
+        }
+      },
+      "parameters": {
+        "samples": ["bacteria/0"],
+        "sample_vol": "1:microliter",
+        "replicates": 4,
+        "num_negative_controls": 4,
+        "total_growth_time": "12:hour",
+        "num_reads": 24
       }
     },
     "dependencies": []
-  },
-  {
-    "name":"RestrictionDigestion",
-    "description":"Restriction digestion of DNA with enzyme(s)",
-    "command_string":"python -m autoprotocol_core.nucleic_acid.restriction_digestion",
-    "inputs":{
-      "enzymes": "ref",
-      "backbone": "ref",
-      "insert": "ref",
-      "dig_buffer": "ref",
-      "water": "ref",
-      "destination_plate": "ref",
-      "enzyme_1": "well",
-      "enzyme_2": "well",
-      "enzyme_3": "well",
-      "enzyme_4": "well",
-      "cut_backbone": "well",
-      "cut_insert": "well",
-      "enzyme_vol": "volume",
-      "source_DNA_vol": "volume",
-      "buffer_vol": "volume",
-      "water_vol": "volume",
-      "digestion_time": "time",
-      "digestion_temp": "temperature",
-      "deactivation_time": "time",
-      "deactivation_temp": "temperature"
-    },
-    "preview":{
-      "parameters":{
-        "enzymes": {
-            "id": null,
-            "type": "96-pcr",
-            "storage": "cold_20",
-            "discard": false
-        },
-        "backbone": {
-            "id": null,
-            "type": "micro-1.5",
-            "storage": "cold_20",
-            "discard": false
-        },
-        "insert": {
-            "id": null,
-            "type": "micro-1.5",
-            "storage": "cold_20",
-            "discard": false
-        },
-        "dig_buffer": {
-            "id": null,
-            "type": "micro-1.5",
-            "storage": "cold_20",
-            "discard": false
-        },
-        "water": {
-            "id": null,
-            "type": "micro-1.5",
-            "storage": "cold_4",
-            "discard": false
-        },
-        "destination_plate": {
-            "id": null,
-            "type": "96-pcr",
-            "storage": "cold_4",
-            "discard": false
-        },
-        "enzyme_1": "enzymes/H12",
-        "enzyme_2": "enzymes/C10",
-        "enzyme_3": "enzymes/A3",
-        "enzyme_4": "enzymes/D7",
-        "cut_backbone": "destination_plate/A1",
-        "cut_insert": "destination_plate/A2",
-        "enzyme_vol": "3:microliter",
-        "source_DNA_vol": "5:microliter",
-        "buffer_vol": "1:microliter",
-        "water_vol": "2:microliter",
-        "digestion_time": "10:minute",
-        "digestion_temp": "37:celsius",
-        "deactivation_time": "5:minute",
-        "deactivation_temp": "80:celsius"
-      }
-    },
-    "dependencies": []
-  }]
+  }
+  ],
+  "license": "MIT",
+  "format": "python"
 }
