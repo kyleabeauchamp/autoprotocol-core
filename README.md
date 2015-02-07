@@ -10,47 +10,6 @@ This repository contains a collection of scripts that use the [autoprotocol-pyth
 
 Installation will also install the [autoprotocol-python](http://github.com/autoprotocol/autoprotocol-python) package if you don't already have it.
 
-## Running Protocols
-
-All protocols in this repository require a separate configuration file to be passed on the command line in order to run.  Templates for the required config file for each protocol are located in the docstring for that protocol.
-
-For example, to run the Gibson assembly protocol:
-
-    $ python -m autoprotocol_core.nucleic_acid.gibson_assembly path/to/gibson_config.json
-
-Where `gibson_config.json` looks like:
-```
-{
-  "parameters": {
-    "resources": {
-      "id": null,
-      "type": "96-pcr",
-      "storage": "cold_20"
-    },
-    "destination_plate": {
-      "id": null,
-      "type": "96-pcr",
-      "storage": "cold_4",
-      "discard": false
-    }
-    "backbone_loc": "resources/A1",
-    "insert1_loc": "resources/A2",
-    "insert2_loc": "resources/A3",
-    "gibson_mix_loc": "resources/A4",
-    "final_mix_loc": "resources/A5",
-    "destination_well": "destination_plate/A1",
-    "backbone_volume": "5:microliter",
-    "insert1_volume": "2.5:microliter",
-    "insert2_volume": "2.5:microliter",
-    "gibson_mix_volume": "10:microliter",
-    "gibson_reaction_time": "40:minute"
-  }
-}
-```
-
-Running the protocol will produce JSON-formatted autoprotocol output on
-standard out.
-
 ## Contributing
 
 The easiest way to contribute is to fork this repository and submit a pull
