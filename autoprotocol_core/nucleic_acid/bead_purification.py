@@ -13,8 +13,7 @@ def bead_purification(protocol, params):
                         params.sample_number).set_volume(params.sample_volume)
     destinations = sample_plate.wells_from(
         sample_plate.well(samples.wells[-1].index + 1), params.sample_number)
-    bead_volume = Unit.fromstring(
-        params.sample_volume) * Unit(1.8, "microliter")
+    bead_volume = Unit.fromstring(params.sample_volume) * 1.8
 
     # Allow beads to come to room temperature
 

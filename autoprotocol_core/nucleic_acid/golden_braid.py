@@ -14,8 +14,7 @@ def golden_braid(protocol, params):
           for fragment in construct:
               if "Concentration" in fragment.properties:
                   frag_vol = (Unit(75,"microliter")/
-                              Unit(fragment.properties["Concentration"].rsplit(":")[0],
-                              "microliter"))
+                              float(fragment.properties["Concentration"].rsplit(":")[0]))
                   total_frag_vol += frag_vol
                   protocol.transfer(fragment, destination_plate.well(i),
                                     frag_vol)

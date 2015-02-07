@@ -9,16 +9,16 @@ def genotyping(protocol, params):
                              discard=True).well(0)
 
     protocol.transfer(params.primers.set_volume("1000:microliter"),
-                      mastermix, params.primer_vol_per_rxn * Unit(num_samples, "microliter"))
+                      mastermix, params.primer_vol_per_rxn * num_samples)
     protocol.transfer(params.MyTaq_buffer.set_volume("1000:microliter"),
-                      mastermix, params.buffer_vol_per_rxn * Unit(num_samples, "microliter"))
+                      mastermix, params.buffer_vol_per_rxn * num_samples)
     protocol.transfer(params.MyTaq.set_volume("200:microliter"),
                       mastermix,
-                      params.polymerase_vol_per_rxn*Unit(num_samples, "microliter"))
+                      params.polymerase_vol_per_rxn * num_samples)
     protocol.transfer(params.water.set_volume("1000:microliter"),
                        mastermix,
                        (params.mastermix_vol_per_rxn-params.buffer_vol_per_rxn-
-                       params.polymerase_vol_per_rxn-params.primer_vol_per_rxn)*Unit(num_samples, "microliter"),
+                       params.polymerase_vol_per_rxn-params.primer_vol_per_rxn)*num_samples,
                        mix_after=True,
                        mix_vol=mastermix.volume)
 

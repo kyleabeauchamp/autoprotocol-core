@@ -16,7 +16,7 @@ def kunkel_dilute(protocol, params):
             protocol.transfer(oligo, params.diluted_oligo_plate.well(i),
                               params.oligo_vol,
                               mix_after=True,
-                              mix_vol=params.water_vol/Unit(2,"microliter"))
+                              mix_vol=params.water_vol/2)
 
 
 if __name__ == '__main__':
