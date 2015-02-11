@@ -1,6 +1,6 @@
 # Autoprotocol-Core
 
-This repository contains a collection of scripts that use the [autoprotocol-python](http://github.com/autoprotocol/autoprotocol-python) library to generate protocols in [Autoprotocol](https://www.autoprotocol.org), a standard way to express experiments in life science.
+This repository contains a collection of scripts that use the [autoprotocol-python](http://github.com/autoprotocol/autoprotocol-python) library to generate protocols in [Autoprotocol](http://www.autoprotocol.org), a standard way to express experiments in life science.
 
 ## Installation
 
