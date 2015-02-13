@@ -36,7 +36,8 @@ def growth_curve(protocol, params):
             duration=incubate_time)
         protocol.absorbance(
             growth_plate,
-            sample_wells,
+            # Working around bug in infinite driver that fails mapping
+            sorted(sample_wells.indices()),
             "600:nanometer",
             dataref=("OD600_%d" % (i+1)))
 

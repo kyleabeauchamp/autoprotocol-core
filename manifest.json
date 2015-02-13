@@ -745,7 +745,7 @@
       "parameters": {
         "samples": ["bacteria/0"],
         "sample_vol": "1:microliter",
-        "replicates": 4,
+        "replicates": 8,
         "num_negative_controls": 4,
         "total_growth_time": "12:hour",
         "num_reads": 24
