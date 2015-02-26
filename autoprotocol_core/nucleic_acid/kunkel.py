@@ -4,9 +4,10 @@ from autoprotocol.util import make_dottable_dict
 from autoprotocol.unit import Unit
 
 
-
 def kunkel(protocol, params):
     params = make_dottable_dict(params)
+
+    #Step 1 - Kinase
     kinase_oligo_plate = protocol.ref("kinase_oligo_plate", None, "96-pcr", storage="cold_20")
     wells_to_kinase = kinase_oligo_plate.wells_from("A1", len(params.oligos))
     kinase_mix = protocol.ref("kinase_mix", None, "micro-1.5", discard=True).well(0).set_volume("1000:microliter")
@@ -29,8 +30,7 @@ def kunkel(protocol, params):
     ])
 
 
-
-# Step 2 - Dilute
+    # Step 2 - Dilute
 
 
     diluted_oligo_plate = protocol.ref("dilute_oligo_plate", None, "96-pcr", storage="cold_20")
@@ -54,8 +54,7 @@ def kunkel(protocol, params):
                               mix_after=True,
                               mix_vol="5:microliter")
 
-
-#Step 3 - Anneal
+    #Step 3 - Anneal
 
     #ssDNA_mix from ssDNA specified, use 384-pcr to minimize dead volume
     ssDNA_mix = protocol.ref("ssDNA_mix", None, "384-pcr", discard=True).well(0).set_volume("20:microliter")
@@ -75,7 +74,7 @@ def kunkel(protocol, params):
     protocol.thermocycle_ramp(annealing_plate,"95:celsius", "25:celsius",
                               "60:minute", step_duration="4:minute")
 
-#Step 4 - Polymerize
+    #Step 4 - Polymerize
 
     protocol.unseal(annealing_plate)
 
