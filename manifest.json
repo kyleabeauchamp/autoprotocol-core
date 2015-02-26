@@ -752,7 +752,211 @@
       }
     },
     "dependencies": []
-  }
+  },
+    {
+      "name": "Kunkel",
+      "description": "Kunkel Mutagenesis protocol from tubes",
+      "command_string": "python -m autoprotocol_core.nucleic_acid.kunkel",
+      "inputs": {
+        "ssDNA": "aliquot",
+        "oligos": "aliquot+",
+        "combos": "aliquot++",
+        "PNK_buffer10x": "aliquot",
+        "PNK_buffer10x_vol_per_rxn": "volume",
+        "ATP10mM": "aliquot",
+        "ATP10mM_vol_per_rxn_kinase": "volume",
+        "PNK": "aliquot",
+        "PNK_vol_per_rxn": "volume",
+        "kinase_water_vol_per_rxn": "volume",
+        "kinase_MM_vol_per_rxn": "volume",
+        "oligo_vol": "volume",
+        "kinase_incubation_temp": "temperature",
+        "kinase_incubation_time": "time",
+        "dilution_water_vol": "volume",
+        "dilution_oligo_vol": "volume",
+        "T4_ligase_buffer10x":"aliquot",
+        "anneal_T4_ligase_buffer10x_vol_per_rxn":"volume",
+        "ssDNA_vol_per_rxn":"volume",
+        "ssDNA_mix_vol_per_rxn": "volume",
+        "diluted_kinased_oligo_vol": "volume",
+        "T4_ligase_buffer10x_vol_per_rxn_polymerize":"volume",
+        "dNTPs_25mM":"aliquot",
+        "dNTPs_25mM_vol_per_rxn":"volume",
+        "ATP10mM_vol_per_rxn_polymerize":"volume",
+        "T4_ligase":"aliquot",
+        "T4_ligase_vol_per_rxn":"volume",
+        "T7_polymerase":"aliquot",
+        "T7_polymerase_vol_per_rxn":"volume",
+        "polymerize_MM_vol":"volume",
+        "polymerize_incubation_time": "time"
+      },
+      "preview": {
+        "refs": {
+          "ssDNA": {
+            "type": "micro-1.5",
+            "aliquots": {
+              "0": {
+                "volume": "50:microliter"
+              }
+            },
+            "store": "cold_20"
+          },
+          "oligo1": {
+            "type": "micro-1.5",
+            "aliquots": {
+              "0": {
+                "volume": "100:microliter"
+              }
+            },
+            "store": "cold_20"
+          },          
+          "oligo2": {
+            "type": "micro-1.5",
+            "aliquots": {
+              "0": {
+                "volume": "100:microliter"
+              }
+            },
+            "store": "cold_20"
+          },          
+          "oligo3": {
+            "type": "micro-1.5",
+            "aliquots": {
+              "0": {
+                "volume": "100:microliter"
+              }
+            },
+            "store": "cold_20"
+          },
+          "PNK_buffer10x": {
+            "type": "micro-1.5",
+            "aliquots": {
+              "0": {
+                "volume": "1000:microliter"
+              }
+            },
+            "store": "cold_20"
+          },
+          "ATP10mM": {
+            "type": "micro-1.5",
+            "aliquots": {
+              "0": {
+                "volume": "1000:microliter"
+              }
+            },
+            "store": "cold_20"
+          },
+          "PNK": {
+            "type": "micro-1.5",
+            "aliquots": {
+              "0": {
+                "volume": "1000:microliter"
+              }
+            },
+            "store": "cold_20"
+          },
+          "T4_ligase_buffer10x": {
+            "type": "micro-1.5",
+            "aliquots": {
+              "0": {
+                "volume": "1000:microliter"
+              }
+            },
+            "store": "cold_20"
+          },
+          "dNTPs_25mM": {
+            "type": "micro-1.5",
+            "aliquots": {
+              "0": {
+                "volume": "1000:microliter"
+              }
+            },
+            "store": "cold_20"
+          },
+          "T4_ligase": {
+            "type": "micro-1.5",
+            "aliquots": {
+              "0": {
+                "volume": "1000:microliter"
+              }
+            },
+            "store": "cold_20"
+          },
+          "T7_polymerase": {
+            "type": "micro-1.5",
+            "aliquots": {
+              "0": {
+                "volume": "1000:microliter"
+              }
+            },
+            "store": "cold_20"
+          }
+
+        },
+
+      "parameters":{ 
+          "oligo_vol": "7:microliter",
+          "ssDNA": "ssDNA/0",
+          "PNK": "PNK/0",
+          "PNK_vol_per_rxn": "1:microliter",
+          "PNK_buffer10x": "PNK_buffer10x/0",
+          "PNK_buffer10x_vol_per_rxn": "3:microliter",
+          "ATP10mM": "ATP10mM/0",
+          "ATP10mM_vol_per_rxn_kinase": "1:microliter",
+          "kinase_water_vol_per_rxn": "18:microliter",
+          "kinase_MM_vol_per_rxn": "23:microliter",
+          "kinase_incubation_temp": "37:celsius",
+          "kinase_incubation_time": "60:minute",
+          "dilution_water_vol": "198:microliter",
+          "dilution_oligo_vol": "2.0:microliter",
+          "ssDNA_vol_per_rxn":"2.0:microliter",
+          "T4_ligase_buffer10x":"T4_ligase_buffer10x/0",
+          "anneal_T4_ligase_buffer10x_vol_per_rxn":"0.2:microliter",
+          "ssDNA_mix_vol_per_rxn": "2.2:microliter",
+          "diluted_kinased_oligo_vol": "2.0:microliter",
+          "T4_ligase_buffer10x_vol_per_rxn_polymerize":"0.6:microliter",
+          "dNTPs_25mM":"dNTPs_25mM/0",
+          "dNTPs_25mM_vol_per_rxn":"0.4:microliter",
+          "ATP10mM_vol_per_rxn_polymerize":"0.4:microliter",
+          "T4_ligase":"T4_ligase/0",
+          "T4_ligase_vol_per_rxn":"0.4:microliter",
+          "T7_polymerase":"T7_polymerase/0",
+          "T7_polymerase_vol_per_rxn":"0.4:microliter",
+          "polymerize_MM_vol": "2.2:microliter",
+          "polymerize_incubation_time": "90:minute",
+
+          "combos": [
+      
+              ["oligo1/0"],
+
+              ["oligo2/0"],
+        
+              ["oligo3/0"],
+              
+              ["oligo1/0","oligo2/0"],
+              
+              ["oligo2/0","oligo3/0"],
+              
+              ["oligo1/0","oligo3/0"],
+
+             ["oligo1/0", "oligo2/0","oligo3/0"]
+     
+
+            ],
+
+          "oligos": [
+            "oligo1/0",
+            "oligo2/0",
+            "oligo3/0"
+          ]
+   
+
+
+       }
+
+      },
+      "dependencies": []
+    }
   ],
   "license": "MIT",
   "format": "python"
