@@ -1,5 +1,5 @@
 {
-  "version": "1.1.1",
+  "version": "1.3.0",
   "protocols": [
     {
       "inputs": {
@@ -419,12 +419,12 @@
     },
     {
       "name": "Kunkel",
-      "description": "Kunkel Mutagenesis protocol from tubes",
+      "description": "Kunkel Mutagenesis protocol from tubes.  Add one or more oligo to mutants to make desired combinations. Each line will be a combination.",
       "command_string": "python -m autoprotocol_core.nucleic_acid.kunkel",
       "inputs": {
         "ssDNA": "aliquot",
         "oligos": "aliquot+",
-        "combos": "aliquot++"
+        "mutants": "aliquot++"
       },
       "preview": {
         "refs": {
@@ -469,7 +469,7 @@
 
       "parameters":{ 
           "ssDNA": "ssDNA/0",
-          "mutant/line (1 to N)": [
+          "mutants": [
       
               ["oligo1/0"],
               ["oligo2/0"],        
