@@ -469,7 +469,7 @@
 
       "parameters":{ 
           "ssDNA": "ssDNA/0",
-          "combos": [
+          "mutant/line (1 to N)": [
       
               ["oligo1/0"],
               ["oligo2/0"],        
