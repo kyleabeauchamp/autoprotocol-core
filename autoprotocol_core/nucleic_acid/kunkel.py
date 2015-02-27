@@ -40,14 +40,14 @@ def kunkel(protocol, params):
     for i in range(0,1+len(params.mutants)/6):
         water.append(protocol.ref("water%s"%(i), None, "micro-1.5", discard=True ).well(0).set_volume("1000:microliter"))
 
-    mutants = [c for c in params.mutants if c]
+    mutants = [m for m in params.mutants if m]
      
     protocol.distribute(water, diluted_oligo_wells, "198:microliter", allow_carryover=True)
     
     protocol.unseal(kinase_oligo_plate)
 
-    for i,c in enumerate(mutants):
-        for kin_oligo in c:
+    for i,m in enumerate(mutants):
+        for kin_oligo in m:
             index = list(params.oligos).index(kin_oligo)
             protocol.transfer(kinase_oligo_plate.well(index), diluted_oligo_plate.well(i),
                               "2:microliter",
