@@ -405,9 +405,7 @@
               "resources/A1",
               "resources/B3",
               "resources/B5"
-            ],
-            [],
-            []
+            ]
           ],
           "golden_braid_pcr_cycles": 45,
           "ligation_time": "5:minute",
@@ -445,7 +443,7 @@
               }
             },
             "store": "cold_20"
-          },          
+          },
           "oligo2": {
             "type": "micro-1.5",
             "aliquots": {
@@ -454,7 +452,7 @@
               }
             },
             "store": "cold_20"
-          },          
+          },
           "oligo3": {
             "type": "micro-1.5",
             "aliquots": {
@@ -467,17 +465,17 @@
 
         },
 
-      "parameters":{ 
+      "parameters":{
           "ssDNA": "ssDNA/0",
           "mutants": [
-      
+
               ["oligo1/0"],
-              ["oligo2/0"],        
-              ["oligo3/0"],              
-              ["oligo1/0","oligo2/0"],              
-              ["oligo2/0","oligo3/0"],              
+              ["oligo2/0"],
+              ["oligo3/0"],
+              ["oligo1/0","oligo2/0"],
+              ["oligo2/0","oligo3/0"],
               ["oligo1/0","oligo3/0"],
-             ["oligo1/0", "oligo2/0","oligo3/0"]     
+             ["oligo1/0", "oligo2/0","oligo3/0"]
             ],
 
           "oligos": [
@@ -485,11 +483,40 @@
             "oligo2/0",
             "oligo3/0"
           ]
-   
+
        }
 
       },
       "dependencies": []
+    },
+    {
+      "name": "GrowthCurve",
+      "description": "Bacterial growth curve",
+      "command_string": "python -m autoprotocol_core.bacteria.growth_curve",
+      "inputs": {
+        "samples": "aliquot+",
+        "sample_vol": "volume",
+        "replicates": "integer",
+        "num_negative_controls": "integer",
+        "total_growth_time": "time",
+        "num_reads": "integer"
+      },
+      "preview": {
+        "refs": {
+          "bacteria": {
+            "type": "micro-2.0",
+            "store": "cold_20"
+          }
+        },
+        "parameters": {
+          "samples": ["bacteria/0"],
+          "sample_vol": "1:microliter",
+          "replicates": 8,
+          "num_negative_controls": 4,
+          "total_growth_time": "12:hour",
+          "num_reads": 24
+        }
+      }
     }
   ],
   "license": "MIT",
