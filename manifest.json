@@ -419,7 +419,7 @@
     },
     {
       "name": "Kunkel",
-      "description": "Kunkel Mutagenesis protocol from tubes.  Add one or more oligo to mutants to make desired combinations. Each line will be a combination.",
+      "description": "Kunkel Mutagenesis protocol from tubes.  Add one or more oligo to mutants to make desired combinations. Each line represents one combination.",
       "command_string": "python -m autoprotocol_core.nucleic_acid.kunkel",
       "inputs": {
         "ssDNA": "aliquot",
