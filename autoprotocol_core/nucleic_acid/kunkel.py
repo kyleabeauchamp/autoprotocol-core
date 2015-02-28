@@ -27,7 +27,7 @@ def kunkel(protocol, params):
         {"temperature": "37:celsius",
          "duration": "60:minute"},
         ]}
-    ])
+    ], volume="5:microliter")
 
 
     # Step 2 - Dilute
